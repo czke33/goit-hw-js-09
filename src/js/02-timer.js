@@ -11,6 +11,10 @@ const elements = {
   seconds: document.querySelector('[data-seconds'),
 };
 
+elements.startBtn.addEventListener('click', onStartBtnCountdown);
+
+elements.startBtn.disabled = true;
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -27,6 +31,29 @@ const options = {
 };
 
 flatpickr(elements.dateInput, options);
+
+let interval = 0;
+
+function onStartBtnCountdown() {
+  interval = setInterval(createTimer, 1000);
+  elements.startBtn.disabled = true;
+  elements.dateInput.disabled = true;
+}
+
+function createTimer() {
+  const totalMs = dates - new Date();
+  const dayPicker = convertMs(totalMs).days;
+  const hoursPicker = convertMs(totalMs).hours;
+  const minutesPicker = convertMs(totalMs).minutes;
+  const secondsPicker = convertMs(totalMs).seconds;
+  elements.days.textContent = dayPicker < 10 ? '0' + dayPicker : dayPicker;
+  elements.hours.textContent =
+    hoursPicker < 10 ? '0' + hoursPicker : hoursPicker;
+  elements.minutes.textContent =
+    minutesPicker < 10 ? '0' + minutesPicker : minutesPicker;
+  elements.seconds.textContent =
+    secondsPicker < 10 ? '0' + secondsPicker : secondsPicker;
+}
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
