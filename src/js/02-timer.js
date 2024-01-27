@@ -11,6 +11,23 @@ const elements = {
   seconds: document.querySelector('[data-seconds'),
 };
 
+const options = {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    if (selectedDates[0] < new Date()) {
+      Notiflix.Notify.failure('Please choose a date in the future');
+    } else {
+      elements.startBtn.disabled = false;
+      dates = selectedDates[0];
+    }
+  },
+};
+
+flatpickr(elements.dateInput, options);
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
