@@ -53,6 +53,14 @@ function createTimer() {
     minutesPicker < 10 ? '0' + minutesPicker : minutesPicker;
   elements.seconds.textContent =
     secondsPicker < 10 ? '0' + secondsPicker : secondsPicker;
+  if (minutesPicker === 0 && secondsPicker === 0) {
+    clearTimer();
+  }
+}
+
+function clearTimer() {
+  clearInterval(interval);
+  elements.startBtn.disabled = true;
 }
 
 function convertMs(ms) {
