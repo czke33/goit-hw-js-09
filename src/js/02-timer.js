@@ -14,6 +14,7 @@ const elements = {
 elements.startBtn.addEventListener('click', onStartBtnCountdown);
 
 elements.startBtn.disabled = true;
+let dates = '';
 
 const options = {
   enableTime: true,
